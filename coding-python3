@@ -1,0 +1,18 @@
+def extract_similiar(s):
+    import numpy as np
+    dicts = {}
+    for i in s:
+        if i not in dicts.keys():
+            dicts[i] = 1
+        else:
+            dicts[i] += 1
+    repeats = [x for x in dicts.keys() if dicts[x] > 1]
+    similars = {}
+    lengths = {}
+    for repeat in repeats:
+        similars[repeat] = np.array([index for index, value in enumerate(s) if value == repeat])
+        lengths[repeat] = max(np.diff(similars[repeat]))
+    print(max(lengths.values()))
+
+s3 = "pwwkewkd22iald"
+extract_similiar(s3) 
